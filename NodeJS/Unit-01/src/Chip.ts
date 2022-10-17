@@ -1,23 +1,27 @@
 export class Chip {
-    private _amount: number = 0;
+  private _amount: number = 0
 
-    constructor(amount: number) {
-        this._amount = amount;
-    }
+  constructor(amount: number) {
+    this._amount = amount
+  }
 
-    add(another: Chip): Chip {
-        return new Chip(this._amount + another._amount);
-    }
+  add(another: Chip): Chip {
+    return new Chip(this._amount + another._amount)
+  }
 
-    substract(chips: Chip): Chip {
-        return new Chip(this._amount - chips._amount);
-    }
+  substract(chips: Chip): Chip {
+    return new Chip(this._amount - chips._amount)
+  }
 
-    multiply(times: number): Chip {
-        return new Chip(this._amount * times);
-    }
+  multiply(times: number): Chip {
+    return new Chip(this._amount * times)
+  }
 
-    gt(chips: Chip): boolean {
-        return this._amount >= chips._amount;
-    }
+  gt(chips: Chip): boolean {
+    return this._amount >= chips._amount
+  }
+
+  equals(chips: Chip): boolean {
+    return this._amount == chips._amount
+  }
 }
