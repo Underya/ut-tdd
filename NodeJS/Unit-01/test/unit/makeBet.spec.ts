@@ -65,12 +65,12 @@ describe('Player test', () => {
     let game = createGameWithSixPlayers()
     let player = new Player()
 
-    // expect(() => {
-    //   player.join(game)
-    // }).to.throw('Game can not accept more than 6 players')
-    expect(player.join(game)).to.throw(
-      'Game can not accept more than 6 players'
-    )
+    expect(() => {
+      player.join(game)
+    }).to.throw('Game can not accept more than 6 players')
+    // expect(player.join(game)).to.throw(
+    //   'Game can not accept more than 6 players'
+    // )
   })
 
   function createGameWithSixPlayers() {
