@@ -6,7 +6,6 @@ import { DiceStub } from '../../src/DiceStub'
 import { Player } from '../../src/Player'
 import { PlayerMock } from '../../src/PlayerMock'
 import { RollDiceGame } from '../../src/RollDiceGame'
-import { RollDiceGameMock } from '../../src/RollDiceGameMock'
 
 describe('test', () => {
   let chip = new Chip(1)
@@ -110,10 +109,24 @@ describe('Player test', () => {
       let game = new RollDiceGame(diceStub)
       player.bet(new Bet(chip, 5))
       game.addPlayer(player)
+
       game.play()
 
       expect(player.winWasCalled).to.equal(true)
       expect(player.winChips.equals(new Chip(6))).to.equal(true)
+    })
+
+    it('can lose the game 2', () => {
+      let player = new PlayerMock()
+      let chip = new Chip(1)
+      let diceStub = new DiceStub(4)
+      let game = new RollDiceGame(diceStub)
+      player.bet(new Bet(chip, 5))
+      game.addPlayer(player)
+
+      game.play()
+
+      expect(player.loseWasCalled).to.equal(true)
     })
   })
 })
