@@ -87,46 +87,46 @@ describe('Player test', () => {
     }
     return game
   }
-  describe('Game test', () => {
-    it('player can win the game', () => {
-      let player = new Player()
-      let chip = new Chip(1)
-      let diceStub = new DiceStub(5)
-      let game = new RollDiceGame(diceStub)
-      player.join(game)
-      player.buy(chip)
-      player.bet(new Bet(chip, 5))
+})
+describe('Game test', () => {
+  it('player can win the game', () => {
+    let player = new Player()
+    let chip = new Chip(1)
+    let diceStub = new DiceStub(5)
+    let game = new RollDiceGame(diceStub)
+    player.join(game)
+    player.buy(chip)
+    player.bet(new Bet(chip, 5))
 
-      game.play()
+    game.play()
 
-      expect(player.has(new Chip(6)))
-    })
+    expect(player.has(new Chip(6)))
+  })
 
-    it('can win 6 chips', () => {
-      let player = new PlayerMock()
-      let chip = new Chip(1)
-      let diceStub = new DiceStub(5)
-      let game = new RollDiceGame(diceStub)
-      player.bet(new Bet(chip, 5))
-      game.addPlayer(player)
+  it('can win 6 chips', () => {
+    let player = new PlayerMock()
+    let chip = new Chip(1)
+    let diceStub = new DiceStub(5)
+    let game = new RollDiceGame(diceStub)
+    player.bet(new Bet(chip, 5))
+    game.addPlayer(player)
 
-      game.play()
+    game.play()
 
-      expect(player.winWasCalled).to.equal(true)
-      expect(player.winChips.equals(new Chip(6))).to.equal(true)
-    })
+    expect(player.winWasCalled).to.equal(true)
+    expect(player.winChips.equals(new Chip(6))).to.equal(true)
+  })
 
-    it('can lose his bet', () => {
-      let player = new PlayerMock()
-      let chip = new Chip(1)
-      let diceStub = new DiceStub(4)
-      let game = new RollDiceGame(diceStub)
-      player.bet(new Bet(chip, 5))
-      game.addPlayer(player)
+  it('can lose his bet', () => {
+    let player = new PlayerMock()
+    let chip = new Chip(1)
+    let diceStub = new DiceStub(4)
+    let game = new RollDiceGame(diceStub)
+    player.bet(new Bet(chip, 5))
+    game.addPlayer(player)
 
-      game.play()
+    game.play()
 
-      expect(player.loseWasCalled).to.equal(true)
-    })
+    expect(player.loseWasCalled).to.equal(true)
   })
 })
