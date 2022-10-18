@@ -1,8 +1,12 @@
 //@ts-test
 import { expect } from 'chai'
+import { Bet } from '../../src/Bet'
 import { Chip } from '../../src/Chip'
+import { DiceStub } from '../../src/DiceStub'
 import { Player } from '../../src/Player'
+import { PlayerMock } from '../../src/PlayerMock'
 import { RollDiceGame } from '../../src/RollDiceGame'
+import { RollDiceGameMock } from '../../src/RollDiceGameMock'
 
 describe('test', () => {
   let chip = new Chip(1)
@@ -35,7 +39,8 @@ describe('Chips test', () => {
 describe('Player test', () => {
   it('can join the game', () => {
     let player = new Player()
-    let game = new RollDiceGame()
+    let diceStub = new DiceStub(5)
+    let game = new RollDiceGame(diceStub)
 
     player.join(game)
 
@@ -74,7 +79,8 @@ describe('Player test', () => {
   })
 
   function createGameWithSixPlayers() {
-    let game = new RollDiceGame()
+    let diceStub = new DiceStub(5)
+    let game = new RollDiceGame(diceStub)
 
     for (let index = 0; index < 6; index++) {
       let player = new Player()
@@ -82,4 +88,32 @@ describe('Player test', () => {
     }
     return game
   }
+  describe('Game test', () => {
+    it('player can win the game', () => {
+      let player = new Player()
+      let chip = new Chip(1)
+      let diceStub = new DiceStub(5)
+      let game = new RollDiceGame(diceStub)
+      player.join(game)
+      player.buy(chip)
+      player.bet(new Bet(chip, 5))
+
+      game.play()
+
+      expect(player.has(new Chip(6)))
+    })
+
+    it('can win the game', () => {
+      let player = new PlayerMock()
+      let chip = new Chip(1)
+      let diceStub = new DiceStub(5)
+      let game = new RollDiceGame(diceStub)
+      player.bet(new Bet(chip, 5))
+      game.addPlayer(player)
+      game.play()
+
+      expect(player.winWasCalled).to.equal(true)
+      expect(player.winChips.equals(new Chip(6))).to.equal(true)
+    })
+  })
 })
