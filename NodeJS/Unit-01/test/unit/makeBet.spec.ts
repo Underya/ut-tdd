@@ -102,7 +102,7 @@ describe('Player test', () => {
       expect(player.has(new Chip(6)))
     })
 
-    it('can win the game', () => {
+    it('can win 6 chips', () => {
       let player = new PlayerMock()
       let chip = new Chip(1)
       let diceStub = new DiceStub(5)
@@ -116,7 +116,7 @@ describe('Player test', () => {
       expect(player.winChips.equals(new Chip(6))).to.equal(true)
     })
 
-    it('can lose the game 2', () => {
+    it('can lose his bet', () => {
       let player = new PlayerMock()
       let chip = new Chip(1)
       let diceStub = new DiceStub(4)
