@@ -30,6 +30,6 @@ describe('Calculator should give result', () => {
   it('of 6 for given "1\n2,3"', () => {
     const calculator = new Calculator()
     const sum = calculator.add('1\n2,3')
-    expect(sum).to.equal(10)
+    expect(sum).to.equal(11)
   })
 })
